@@ -185,6 +185,7 @@ contains
   !NOTE: this function is suited for collapse. Use with caution!
   function calc_H2shieldDB96(n,Tgas)
     use krome_commons
+    use krome_getphys
     real*8::n(nspec),Tgas,calc_H2shieldDB96,N_H2, nH2
 
     !check on H2 abundances to avoid
