@@ -62,7 +62,8 @@ class krome:
 	useReverse = useCustomCoe = useODEConstant = cleanBuild = usePlainIsotopes = useDust = usePhotoDust_3D = False
 	use_thermo = useStars = useNuclearMult = useCoolingdH = useHeatingdH = useCoolingChem = False
 	usePhIoniz = useHeatingCompress = useHeatingPhoto = useHeatingChem = useDecoupled = False
-	useHeatingCR = useHeatingPhotoAv = useHeatingPhotoDust = useHeatingXRay = useThermoToggle = useHeatingPhotoDustNet = False
+	useHeatingCR = useHeatingPhotoAv = useHeatingPhotoDust = useHeatingXRay = False
+	useThermoToggle = useChemoToggle = useHeatingPhotoDustNet = False
 	useX = pedanticMakefile = useFakeOpacity = useConserve = useConserveE = useConserveLin = noExample = useNLEQ = False
 	usePhotoOpacity = useXRay = hasSurfaceReactions = shieldHabingDust = False
 	has_plot = doIndent = useTlimits = useODEthermo = safe = doJacobian = sinkCheck = recCheck = shortHead = True
@@ -400,6 +401,8 @@ class krome:
 		self.parser.add_argument("-useSemenov", action="store_true", help="use semenov framework for surface chemistry")
 		self.parser.add_argument("-useThermoToggle", action="store_true", help="include thermal calculation control. Use\
 			krome_thermo_on and krome_thermo_off to switch on/off the thermal processes (i.e. cooling and heating). Default is on.")
+		self.parser.add_argument("-useChemoToggle", action="store_true", help="include chemical calculation control. Use\
+			krome_chemo_on and krome_chemo_off to switch on/off the thermal processes (i.e. cooling and heating). Default is on.")
 		self.parser.add_argument("-useTabs", action="store_true", help="use tabulated rate coefficients (free parameter: temperature)")
 		self.parser.add_argument("-v", action="store_true", help="print the current version of KROME")
 		self.parser.add_argument("-ver", action="store_true", help="same as -v")
@@ -991,6 +994,9 @@ class krome:
 		#include an if in the ODE for the thermal part
 		if args.useThermoToggle:
 			self.useThermoToggle = True
+
+		if args.useChemoToggle:
+			self.useChemoToggle = True
 
 		#creates ramses patches
 		if args.ramses:
@@ -7045,6 +7051,7 @@ class krome:
 			srow = row.strip()
 			if srow == "#IFKROME_use_thermo" and (not self.use_thermo or not self.useODEthermo): skip = True
 			if srow == "#IFKROME_use_thermo_toggle" and not self.useThermoToggle: skip = True
+			if srow == "#IFKROME_use_chemo_toggle" and not self.useChemoToggle: skip = True
 			if srow == "#IFKROME_report" and not self.doReport: skip = True
 			if srow == "#IFKROME_useDust" and not self.useDust: skip = True
 			if srow == "#IFKROME_usedTdust" and not self.usedTdust: skip = True
