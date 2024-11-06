@@ -115,7 +115,7 @@ class Mol:
                  "SI", "P", "S", "CL", "CA", "K", "MN", "FE", "NI"]  # elements
         adic += ["_META", "_ORTHO", "_PARA", "GRAIN"]
         adic = sorted(adic, key=lambda xa: len(xa), reverse=True)  # sort by length
-        for kop, vop in {"m": "_meta", "o": "_ortho", "p": "_para"}.iteritems():
+        for kop, vop in {"m": "_meta", "o": "_ortho", "p": "_para"}.items():
             if self.name.startswith(kop):
                 self.name = self.name[1:] + vop
         name = self.name  # copy name locally
@@ -138,8 +138,8 @@ class Mol:
         amol = sorted(amol, key=lambda xa: xa[0])  # sort by position
         emol = []  # exploded molecule
         if cname.replace("X", "").strip() != "":
-            print "ERROR: problem when parsing " + self.name
-            print name, cname
+            print("ERROR: problem when parsing " + self.name)
+            print(name, cname)
             return None
 
         ii = 0
@@ -174,11 +174,11 @@ class Mol:
 # Recommendation
 
 
-print "******************************"
-print "****** RUNNING SUB KIDA ******"
-print "******************************"
+print("******************************")
+print("****** RUNNING SUB KIDA ******")
+print("******************************")
 
-print "reading file "+fname+", wait..."
+print("reading file "+fname+", wait...")
 
 okcount = totcount = trangecount = single_count = 0
 nhist = dict()
@@ -186,7 +186,7 @@ idxdic = dict()
 trange = dict()
 tsingle = dict()
 formulahist = dict()
-fh = open(fname, "rb")
+fh = open(fname, "r")
 fout = open(foutname, "w")
 fmult = open(fmultname, "w")
 fmt = [11]*reactants_number + [1] + products_number*[11] + [1] + 3*[11] \
@@ -266,7 +266,7 @@ for row in fh:
                 KK += "*exp(-"+arow["c"]+"*"+Avvar+")"
     elif arow["formula"] in [0, 3]:
         if arow["formula"] == 0:
-            print "WARNING: found rate with Formula type 0 treated as Kojii (i.e. type 3)"
+            print("WARNING: found rate with Formula type 0 treated as Kojii (i.e. type 3)")
         KK = arow["a"]
         if float(arow["b"]) != 0e0:
             KK += "*(T32)**("+arow["b"]+")"
@@ -290,9 +290,9 @@ for row in fh:
             gpart += arow["c"]+"**2*28.501d0*invT"
             KK += "*(1d0 "+gpart+")"
     else:
-        print "WARNING: Formula not found!", arow["formula"]
+        print("WARNING: Formula not found!", arow["formula"])
         formula_not_found_count += 1
-        print srow[:60] + "..."
+        print(srow[:60] + "...")
         continue
 
     KK = KK.replace("--", "+").replace("++", "+").replace("-+", "-").replace("+-", "-")
@@ -300,17 +300,17 @@ for row in fh:
     ok = True
     if int(arow["formula"]) not in processes:
         ok = False
-        print "skip reaction with process", int(arow["formula"])
+        print("skip reaction with process", int(arow["formula"]))
     if int(arow["recom"]) not in recom:
-        print "skip reaction according to recom", int(arow["recom"])
+        print("skip reaction according to recom", int(arow["recom"]))
         ok = False
     if (arow["formula"] != 1) and (arow["formula"] != 2):
         if float(arow["tmin"]) < Tmin:
             ok = False
-            print "skip reaction according to Tmin", Tmin
+            print("skip reaction according to Tmin", Tmin)
         if float(arow["tmax"]) > Tmax:
             ok = False
-            print "skip reaction according to Tmax", Tmax
+            print("skip reaction according to Tmax", Tmax)
     if not ok:
         continue
 
@@ -335,13 +335,13 @@ for row in fh:
 
         check = mymol.parse()
         if check is None:
-            print "ERROR: problem when parsing a species in line"
-            print srow
+            print("ERROR: problem when parsing a species in line")
+            print(srow)
             sys.exit()
 
-	if include:
-		if mymol.name not in include:
-			ok = False
+    if include:
+        if mymol.name not in include:
+            ok = False
 
         RR_obj.append(mymol)
 
@@ -379,13 +379,13 @@ for row in fh:
         check = mymol.parse()
 
         if check is None:
-            print "ERROR: problem when parsing a species in line"
-            print srow
+            print("ERROR: problem when parsing a species in line")
+            print(srow)
             sys.exit()
 
-	if include:
-		if mymol.name not in include:
-			ok = False
+    if include:
+        if mymol.name not in include:
+            ok = False
 
         PP_obj.append(mymol)
 
@@ -481,35 +481,35 @@ fh.close()
 
 # FINAL OUTPUT
 if okcount == 0:
-    print "********** WARNING! **********"
-    print "No reactions matching your criteria!!!"
+    print("********** WARNING! **********")
+    print("No reactions matching your criteria!!!")
     sys.exit()
 
 multi = [str(k) + "("+str(idxdic[k])+") [" +
-         (",".join(v)) + "]" for (k, v) in nhist.iteritems() if len(v) > 1]
+         (",".join(v)) + "]" for (k, v) in nhist.items() if len(v) > 1]
 
 if len(multi) > 1:
-    print "WARNING: there are " + str(len(multi)) + " reactions with multiple values"
-    print " Reactions with multiple values written in", fmultname
+    print("WARNING: there are " + str(len(multi)) + " reactions with multiple values")
+    print(" Reactions with multiple values written in", fmultname)
 
-print "Total reactions:", totcount
-print "Rections INCLUDED:", okcount
-print "Rections NOT INCLUDED:", totcount - okcount
-print "Multiple reactions (same reactants and products):", len(multi)
-print "Formula not found reactions:", formula_not_found_count
-print "Joined Trange reactions:", trangecount
+print("Total reactions:", totcount)
+print("Rections INCLUDED:", okcount)
+print("Rections NOT INCLUDED:", totcount - okcount)
+print("Multiple reactions (same reactants and products):", len(multi))
+print("Formula not found reactions:", formula_not_found_count)
+print("Joined Trange reactions:", trangecount)
 if len(tsingle) > 0:
-    print "WARNING: Found reactions with Tmin==Tmax:", sum(tsingle.values()), "as"
-    print "----------------------------------------"
-    print " " + tabrow(["Tmin=Tmax", "count"])
-    print "----------------------------------------"
-    for k, v in tsingle.iteritems():
-        print " " + tabrow([str(k), v])
-    print "----------------------------------------"
+    print("WARNING: Found reactions with Tmin==Tmax:", sum(tsingle.values()), "as")
+    print("----------------------------------------")
+    print(" " + tabrow(["Tmin=Tmax", "count"]))
+    print("----------------------------------------")
+    for k, v in tsingle.items():
+        print(" " + tabrow([str(k), v]))
+    print("----------------------------------------")
 if extend_single and (single_count > 0):
-    print "WARNING: temperature limits removed for " + str(single_count) \
-          + " reactions with Tmin=Tmax"
-print "Formula count per type:"
+    print("WARNING: temperature limits removed for " + str(single_count)
+          + " reactions with Tmin=Tmax")
+print("Formula count per type:")
 
 rtype = {0: "Dust/Special",
          1: "CR ioniz",
@@ -518,9 +518,11 @@ rtype = {0: "Dust/Special",
          4: "ionpol1",
          5: "ionpol2"}
 if len(formulahist) > 0:
-    for k, v in formulahist.iteritems():
-        print " " + tabrow([rtype[k], ":", v])
-print "File written in:", foutname
-print "Reactions with multiple values written in", fmultname
+    for k, v in formulahist.items():
+        print(" " + tabrow([rtype[k], ":", v]))
+print("File written in:", foutname)
+print("Reactions with multiple values written in", fmultname)
 
-print "Everything done! Bye!"
+print("Everything done! Bye!")
+
+
