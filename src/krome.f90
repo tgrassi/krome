@@ -629,9 +629,10 @@ contains
     clump_factor = 1d0
 #ENDIFKROME
 
-    !default for thermo toggle is ON
+    !default for thermo and chem toggle is ON
     !$omp parallel
     krome_thermo_toggle = 1
+    krome_chemo_toggle = 1
     !$omp end parallel
 
     !load arrays with ractants/products indexes

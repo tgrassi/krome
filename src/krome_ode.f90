@@ -68,7 +68,15 @@ contains
 
 #KROME_dust_H2
 
+#IFKROME_use_chemo_toggle
+   if(krome_thermo_toggle>0) then
+#ENDIFKROME
+
 #KROME_ODE
+
+#IFKROME_use_chemo_toggle
+   end if
+#ENDIFKROME
 
 #IFKROME_use_thermo_toggle
     if(krome_thermo_toggle>0) then

@@ -21,9 +21,9 @@ module krome_commons
   real*8::ktab(nrea,ktab_n),ktab_logTlow, ktab_logTup, ktab_T(ktab_n)
   real*8::inv_ktab_T(ktab_n-1), inv_ktab_idx
 
-  !thermo toggle (when >0 do cooling/heating)
-  integer::krome_thermo_toggle
-  !$omp threadprivate(krome_thermo_toggle)
+  !thermo toggle (when >0 do cooling/heating), same for chemistry
+  integer::krome_thermo_toggle, krome_chemo_toggle
+  !$omp threadprivate(krome_thermo_toggle, krome_chemo_toggle)
 
   !debug bit flag, print and array with fallback values for extreme environments
   integer:: red_flag
