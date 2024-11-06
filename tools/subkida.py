@@ -241,7 +241,7 @@ for row in fh:
     p = 0
     arow = dict()
     for i in range(len(fmt)):
-        arow[keys[i]] = srow[p:p+fmt[i]].strip()
+        arow[keys[i]] = row[p:p+fmt[i]].strip()
         p += fmt[i]
     RR = ",".join([arow["R"+str(i)] for i in range(reactants_number)])
     PP = ",".join([arow["P"+str(i)] for i in range(products_number)])
