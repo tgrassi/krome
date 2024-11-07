@@ -330,7 +330,6 @@ for row in fh:
                 if ex in R:
                     ok = False
                     break
-
         mymol.name = R
 
         check = mymol.parse()
@@ -339,9 +338,9 @@ for row in fh:
             print(srow)
             sys.exit()
 
-    if include:
-        if mymol.name not in include:
-            ok = False
+        if include:
+            if mymol.name not in include:
+                ok = False
 
         RR_obj.append(mymol)
 
@@ -358,6 +357,7 @@ for row in fh:
             for x in mymol.atoms:
                 if x not in use:
                     ok = False
+
 
     PP_obj = []
     for i in range(products_number):
@@ -383,9 +383,9 @@ for row in fh:
             print(srow)
             sys.exit()
 
-    if include:
-        if mymol.name not in include:
-            ok = False
+        if include:
+            if mymol.name not in include:
+                ok = False
 
         PP_obj.append(mymol)
 
