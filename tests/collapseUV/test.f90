@@ -75,7 +75,12 @@ program test_krome
         call krome(x(:),Tgas,dt)
 
         !store results to dump later
-        result(:,i,j) = (/ j21s(j),dd,Tgas,x(KROME_idx_H2)/dd,x(KROME_idx_H)/dd /)
+        !print *,size(result,dim=1)
+        result(1,i,j) = j21s(j)
+        result(2,i,j) = dd
+        result(3,i,j) = Tgas
+        result(4,i,j) = x(KROME_idx_H2)/dd
+        result(5,i,j) = x(KROME_idx_H)/dd
         if(mod(i,100)==0) print '(2I5,99E11.3)',j,i,dd,Tgas
 
      end do
