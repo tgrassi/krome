@@ -3880,7 +3880,7 @@ class krome:
 	def CInterface(self):
 		if not self.interfaceC: return
 
-		print("- writing KROME C headers...",)
+		print("- writing KROME C headers...", end="")
 		# generate C header files, one for each KROME Fortran module which
 		# should be accessible to the user.
 		self.makeMainCHeader()
@@ -3890,7 +3890,7 @@ class krome:
 	def PyInterface(self):
 		if not self.interfacePy: return
 
-		print("- writing pykrome.py...",)
+		print("- writing pykrome.py...", end="")
 		# generate pykrome.py file
 		self.makePythonModule()
 
@@ -4859,7 +4859,7 @@ class krome:
 		buildFolder = self.buildFolder
 		#*********COMMONS****************
 		#write parameters in krome_commons.f90
-		print("- writing krome_commons.f90...",)
+		print("- writing krome_commons.f90...", end="")
 		fh = open(self.srcFolder+"krome_commons.f90")
 		if self.buildCompact:
 			fout = open(buildFolder+"krome_all.f90","a")
@@ -5121,7 +5121,7 @@ class krome:
 		#*********USER COMMONS****************
 		#write parameters in krome_user_commons.f90
 		if not file_exists(buildFolder+"krome_user_commons.f90"):
-			print("- writing krome_user_commons.f90...",)
+			print("- writing krome_user_commons.f90...", end="")
 
 			fh = open(self.srcFolder+"krome_user_commons.f90")
 			fouta = open(self.buildFolder+"krome_user_commons.f90","w")
@@ -5171,7 +5171,7 @@ class krome:
 
 		#*********GRFUNCS****************
 		#write parameters in krome_grfuncs.f90
-		print("- writing krome_grfuncs.f90...",)
+		print("- writing krome_grfuncs.f90...", end="")
 		fh = open(self.srcFolder+"krome_grfuncs.f90")
 		if self.buildCompact:
 			fout = open(buildFolder + "krome_all.f90","a")
@@ -5235,7 +5235,7 @@ class krome:
 	def makeFit(self):
 		#*********FIT****************
 		#write parameters in krome_fit.f90
-		print("- writing krome_fit.f90...",)
+		print("- writing krome_fit.f90...", end="")
 		fh = open(self.srcFolder+"krome_fit.f90")
 		if self.buildCompact :
 			fout = open(self.buildFolder+"krome_all.f90","a")
@@ -5257,7 +5257,7 @@ class krome:
 
 		#*********PHFUNCS****************
 		#write parameters in krome_grfuncs.f90
-		print("- writing krome_getphys.f90...",)
+		print("- writing krome_getphys.f90...", end="")
 		fh = open(self.srcFolder+"krome_getphys.f90")
 		if self.buildCompact:
 			fout = open(buildFolder+"krome_all.f90","a")
@@ -5478,7 +5478,7 @@ class krome:
 
 		#*********GADIAB****************
 		#write parameters in krome_gadiab.f90
-		print("- writing krome_gadiab.f90...",)
+		print("- writing krome_gadiab.f90...", end="")
 		fh = open(self.srcFolder+"krome_gadiab.f90")
 		if self.buildCompact:
 			fout = open(buildFolder+"krome_all.f90","a")
@@ -5634,7 +5634,7 @@ class krome:
 
 		#*********PHFUNCS****************
 		#write parameters in krome_grfuncs.f90
-		print("- writing krome_phfuncs.f90...",)
+		print("- writing krome_phfuncs.f90...", end="")
 		fh = open(self.srcFolder+"krome_phfuncs.f90")
 		if self.buildCompact:
 			fout = open(buildFolder+"krome_all.f90","a")
@@ -5689,7 +5689,7 @@ class krome:
 
 		#*********SUBS****************
 		#write parameters in krome_subs.f90
-		print("- writing krome_subs.f90...",)
+		print("- writing krome_subs.f90...", end="")
 		fh = open(self.srcFolder+"krome_subs.f90")
 		if self.buildCompact:
 			fout = open(buildFolder+"krome_all.f90","a")
@@ -6056,7 +6056,7 @@ class krome:
 		buildFolder = self.buildFolder
 		reacts = self.reacts
 		#********* PHOTO ****************
-		print("- writing krome_photo.f90...",)
+		print("- writing krome_photo.f90...", end="")
 		fh = open(self.srcFolder+"krome_photo.f90")
 		if self.buildCompact:
 			fout = open(buildFolder+"krome_all.f90","a")
@@ -6175,7 +6175,7 @@ class krome:
 		buildFolder = self.buildFolder
 		coevars = self.coevars #copy coefficient variables
 		#********* TABS ****************
-		print("- writing krome_tabs.f90...",)
+		print("- writing krome_tabs.f90...", end="")
 		fh = open(self.srcFolder+"krome_tabs.f90")
 		if self.buildCompact:
 			fout = open(buildFolder+"krome_all.f90","a")
@@ -6289,7 +6289,7 @@ class krome:
 		useDustT = self.useDustT
 		usedTdust = self.usedTdust
 		#********* DUST ****************
-		print("- writing krome_dust.f90...",)
+		print("- writing krome_dust.f90...", end="")
 		fh = open(self.srcFolder+"krome_dust.f90")
 		if self.buildCompact:
 			fout = open(buildFolder+"krome_all.f90","a")
@@ -6372,7 +6372,7 @@ class krome:
 		buildFolder = self.buildFolder
 
 		#*********COOLING GH****************
-		print("- writing krome_coolingGH.f90...",)
+		print("- writing krome_coolingGH.f90...", end="")
 		fh = open(self.srcFolder+"krome_coolingGH.f90")
 
 		if self.buildCompact:
@@ -6405,7 +6405,7 @@ class krome:
 		specs = self.specs
 		#*********COOLING****************
 		#write header in krome_cooling.f90
-		print("- writing krome_cooling.f90...",)
+		print("- writing krome_cooling.f90...", end="")
 		fh = open(self.srcFolder+"krome_cooling.f90")
 
 		if self.buildCompact:
@@ -6697,7 +6697,7 @@ class krome:
 		buildFolder = self.buildFolder
 		#*********HEATING****************
 		#write header in krome_heating.f90
-		print("- writing krome_heating.f90...",)
+		print("- writing krome_heating.f90...", end="")
 
 		fh = open(self.srcFolder+"krome_heating.f90")
 
@@ -6990,7 +6990,7 @@ class krome:
 
 		#*********ODE****************
 		#write parameters in krome_ode.f90
-		print("- writing krome_ode.f90...",)
+		print("- writing krome_ode.f90...", end="")
 
 		fh = open(self.srcFolder+"krome_ode.f90")
 
@@ -7362,7 +7362,7 @@ class krome:
 		specs = self.specs
 		#*********USER****************
 		#write parameters in krome_user.f90
-		print("- writing krome_user.f90...",)
+		print("- writing krome_user.f90...", end="")
 		fh = open(self.srcFolder+"krome_user.f90")
 		if self.buildCompact:
 			fout = open(buildFolder+"krome_all.f90","a")
@@ -7751,7 +7751,7 @@ class krome:
 		buildFolder = self.buildFolder
 		#********* REDUCTION ****************
 		#WARNING: this part is not supported and its use is discouraged
-		print("- writing krome_reduction.f90...",)
+		print("- writing krome_reduction.f90...", end="")
 		fh = open(self.srcFolder+"krome_reduction.f90")
 
 		if self.buildCompact:
@@ -7793,7 +7793,7 @@ class krome:
 		buildFolder = self.buildFolder
 		#********* STARS ****************
 		#intended for nuclear networks of stars
-		print("- writing krome_stars.f90...",)
+		print("- writing krome_stars.f90...", end="")
 		fh = open(self.srcFolder+"krome_stars.f90")
 
 		if self.buildCompact:
@@ -7847,7 +7847,7 @@ class krome:
 		dustTypes = self.dustTypes
 		#*********MAIN****************
 		#write WORKS arrays and IAC/JAC in krome.f90
-		print("- writing krome.f90...",)
+		print("- writing krome.f90...", end="")
 		if self.useDvodeF90:
 			fh = open(self.srcFolder+"kromeF90.f90")
 		else:
@@ -8283,7 +8283,7 @@ class krome:
 	#######################################################
 	def indent(self):
 		buildFolder = self.buildFolder
-		print("Indenting...",)
+		print("Indenting...", end="")
 		if self.doIndent:
 			if self.buildCompact:
 				indentF90(buildFolder+"krome_all.f90")
