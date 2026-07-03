@@ -44,7 +44,7 @@ if len(argv) > 1:
 fileName = "krome_user.f90"
 if not os.path.isfile(fileName): fileName = "krome_all.f90"
 
-fh = open(fileNamez)
+fh = open(fileName)
 alltext = ""
 for row in fh:
 	alltext += row
@@ -110,4 +110,6 @@ for x in flist:
 	print(str(icount+1)+") "+fname.replace(", ",","))
 	print("  "+x[1]+"\n")
 	icount += 1
+
+print("Do you want more search options? Add -h\n")
 
