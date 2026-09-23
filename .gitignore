@@ -21,3 +21,8 @@ build/
 *.so
 *.a
 *.lib
+
+./data/coolZ_CIE2012.dat
+./data/coolZ_CIE2005.dat
+./data/coolZ_CIE2012NOUV.dat
+

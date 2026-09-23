@@ -44,6 +44,7 @@ import shutil
 import argparse
 import re
 import copy
+import tarfile
 from kromelib import *
 from os import listdir
 from os.path import isfile, join
@@ -203,6 +204,21 @@ class krome:
 				a = keyb_input("Any key to ignore q to quit... ")
 				if a == "q":
 					sys.exit()
+
+		# check if files in folder are only zipped
+		is_unzipped = False
+		for fle in glob.glob("data/*"):
+			if os.path.isfile(fle) and not fle.endswith(".tar.xz"):
+				is_unzipped = True
+				break
+
+		# unzip files
+		if not is_unzipped:
+			print("Unzipping data files. It takes a while, but it's done once and for all...")
+			for fle in glob.glob("data/*.tar.xz"):
+				print("Unzipping "+fle+"...")
+				with tarfile.open(fle, mode="r:xz") as tar_file:
+					tar_file.extractall(path="./data/")
 
 	#########################################
 	def init_argparser(self):
