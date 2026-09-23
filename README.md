@@ -11,20 +11,31 @@ KROME is a nice and friendly package to model chemistry and microphysics
  the users are well accepted. See disclaimer below and GNU License 
  in gpl-3.0.txt.
 
---
-## Get KROME
-KROME is available on 
-
-- [http://www.kromepackage.org](http://www.kromepackage.org)
-
- and
-
-- [https://github.com/tgrassi/krome](https://github.com/tgrassi/krome)
-
-You can quickly clone this repository by typing
+--------
+## How to install and test KROME
+The basic KROME installation is
 ```
 git clone git@github.com:tgrassi/krome.git
 ```
+Test with
+```
+cd krome
+./krome -test=hello
+cd build
+make # if you use Ifort/Ifx
+make gfortran # if you use gfortran
+./test
+```
+You should get something like
+```
+Test OK!
+```
+
+To plot, you can use this Python command (or the gnuplot instruction from the output)
+```
+python -c "import matplotlib.pyplot as plt;import numpy as np;data = np.loadtxt('fort.66');plt.plot(data[:, 0], data[:, 1:]);plt.show()"
+```
+
 
 ---
 ## Get help
@@ -41,6 +52,18 @@ More information on the wiki
 Additional material can be found on the Computational Astrochemistry Schools website
 
  - http://kromepackage.org/bootcamp/
+
+--------
+## How to install gfortran
+To install gfortran on Ubuntu, type
+
+`sudo apt-get install gfortran`
+
+or [this on OSX](http://skipperkongen.dk/2012/04/27/how-to-install-gfortran-on-mac-os-x/) or install [gcc using brew](https://formulae.brew.sh/formula/gcc).
+
+Note, you might need to update Xcode to the latest version before the `brew install gcc` command.
+
+You might get a library error when compiling PROTO (`make`). This could be solved by deactivating conda (`conda deactivate`).    
 
 ---
 ## Authors
@@ -60,6 +83,30 @@ and Stefano Bovino
 Contributors: J.Boulangier, T.Frostholm, D.Galli, F.A.Gianturco, T.Haugboelle,
   A.Lupi, J.Prieto, J.Ramsey, D.R.G.Schleicher, D.Seifried, E.Simoncini,
   E.Tognelli
+
+--
+# How to cite
+Refer to the original paper https://ui.adsabs.harvard.edu/abs/2014MNRAS.439.2386G
+```
+@ARTICLE{2014MNRAS.439.2386G,
+       author = {{Grassi}, T. and {Bovino}, S. and {Schleicher}, D.~R.~G. and {Prieto}, J. and {Seifried}, D. and {Simoncini}, E. and {Gianturco}, F.~A.},
+        title = "{KROME - a package to embed chemistry in astrophysical simulations}",
+      journal = {\mnras},
+     keywords = {astrochemistry, methods: numerical, ISM: evolution, ISM: molecules, Astrophysics - Astrophysics of Galaxies},
+         year = 2014,
+        month = apr,
+       volume = {439},
+       number = {3},
+        pages = {2386-2419},
+          doi = {10.1093/mnras/stu114},
+archivePrefix = {arXiv},
+       eprint = {1311.1070},
+ primaryClass = {astro-ph.GA},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2014MNRAS.439.2386G},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+```
 
 ---
 ## Speed test
