@@ -15,9 +15,9 @@ KROME is a nice and friendly package to model chemistry and microphysics
 ## How to install and test KROME
 The basic KROME installation is
 ```
-git clone git@github.com:tgrassi/krome.git
+git clone https://github.com/tgrassi/krome.git
 ```
-Test with
+Test with (see below on how to install gfortran)
 ```
 cd krome
 ./krome -test=hello
