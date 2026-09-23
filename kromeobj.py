@@ -205,12 +205,8 @@ class krome:
 				if a == "q":
 					sys.exit()
 
-		# check if files in folder are only zipped
-		is_unzipped = False
-		for fle in glob.glob("data/*"):
-			if os.path.isfile(fle) and not fle.endswith(".tar.xz"):
-				is_unzipped = True
-				break
+		# check if coolZ_CIE files are unzipped
+		is_unzipped = len(glob.glob("data/coolZ_CIE20*.dat")) > 0
 
 		# unzip files
 		if not is_unzipped:
