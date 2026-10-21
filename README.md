@@ -1,11 +1,14 @@
 # This is the [KROME](https://kromepackage.org) repository
 
+:mega: The new version is [KROME-X](https://github.com/alupi24/krome-x)     
+
+
 KROME is a nice and friendly package to model chemistry and microphysics 
  for a wide range of astrophysical simulations. 
  Given a chemical network (in CSV-like format), it automatically 
  generates all the routines needed to solve the kinetics of the system, 
  modeled as a system of coupled Ordinary Differential Equations. 
- It provides various options that make it unique and highly flexible. 
+ It offers a range of options that make it unique and highly flexible. 
  Any suggestions and comments are welcome. KROME is an open-source 
  package, GNU-licensed, and any improvements provided by 
  the users are well accepted. See disclaimer below and GNU License 
@@ -128,14 +131,3 @@ KROME is provided "as it is", without any warranty.
  Such exclusion of liability expressly includes any damages 
  including the loss of data of any kind (including personal data)
 
----
-## Trusted commit
-
-Additional notes: this version of KROME is a developer version,
- while the stable version has been dropped. For this reason, we
- warmly recommend checking the status of the release by using the
- test website
- http://kromepackage.org/test/
-
- More information on the "tested" version here
- https://bitbucket.org/tgrassi/krome/wiki/stable_version
